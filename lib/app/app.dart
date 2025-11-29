@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       title: 'Counsel Link',
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: kDebugMode,
-      routerConfig: AppRoutes.router,
+      routerConfig: AppRoutes.instance.router,
       locale: AppLocale.defaultLocale,
       supportedLocales: AppLocale.supportedLocales,
       localizationsDelegates: AppLocale.localizationsDelegates,

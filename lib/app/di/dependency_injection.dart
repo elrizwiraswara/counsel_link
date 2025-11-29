@@ -18,6 +18,7 @@ import '../../presentation/view_model/home_client_view_model.dart';
 import '../../presentation/view_model/home_counselor_view_model.dart';
 import '../../presentation/view_model/profile_view_model.dart';
 import '../../presentation/view_model/room_view_model.dart';
+import '../routes/app_routes.dart';
 
 /// Setup dependency injection
 Future<void> setupDependencyInjection() async {
@@ -81,4 +82,7 @@ Future<void> setupDependencyInjection() async {
       authViewModel: sl<AuthViewModel>(),
     ),
   );
+
+   // Routes
+  di.registerSingleton<AppRoutes>(AppRoutes(di<AuthViewModel>()));
 }

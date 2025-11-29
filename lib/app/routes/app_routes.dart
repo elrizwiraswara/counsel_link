@@ -19,26 +19,39 @@ import 'params/error_view_param.dart';
 import 'params/room_view_param.dart';
 
 class AppRoutes {
-  AppRoutes._();
+  final AuthViewModel _authViewModel;
+
+  AppRoutes(this._authViewModel) {
+    _initialize();
+  }
+
+  // Static convenience getter - returns the same instance from GetIt
+  static AppRoutes get instance => di<AppRoutes>();
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
-  static final authViewModel = di<AuthViewModel>();
+  GoRouter? _router;
+  GoRouter get router {
+    if (_router == null) _initialize();
+    return _router!;
+  }
 
-  static final router = GoRouter(
-    initialLocation: '/',
-    navigatorKey: rootNavigatorKey,
-    refreshListenable: authViewModel.isAuthenticated,
-    errorBuilder: (context, state) => ErrorView(param: ErrorViewParam(error: state.error)),
-    routes: [_splash],
-  );
+  void _initialize() {
+    _router = GoRouter(
+      initialLocation: '/',
+      navigatorKey: rootNavigatorKey,
+      refreshListenable: _authViewModel.isAuthenticated,
+      errorBuilder: (context, state) => ErrorView(param: ErrorViewParam(error: state.error)),
+      routes: [_splash],
+    );
+  }
 
   static final _splash = GoRoute(
     path: '/',
     builder: (context, state) => const SplashView(),
     redirect: (context, state) {
-      final isChecking = authViewModel.isChecking.value;
-      final isAuthenticated = authViewModel.isAuthenticated.value;
+      final isChecking = instance._authViewModel.isChecking.value;
+      final isAuthenticated = instance._authViewModel.isAuthenticated.value;
       final isSplashRoute = state.fullPath == '/';
       final isAuthRoute = state.fullPath?.startsWith('/auth') ?? false;
 
@@ -131,9 +144,9 @@ class AppRoutes {
   static final _home = GoRoute(
     path: '/home',
     builder: (context, state) {
-      if (authViewModel.user == null) throw Exception('Unauthenticated!');
+      if (instance._authViewModel.user == null) throw Exception('Unauthenticated!');
 
-      switch (authViewModel.user?.role) {
+      switch (instance._authViewModel.user?.role) {
         case UserRole.counselor:
           return HomeViewCounselor();
         case UserRole.admin:

@@ -44,8 +44,8 @@ class ErrorHandlerBuilderState extends State<ErrorHandlerBuilder> {
     if (!mounted) return;
 
     // Prevent to push to ErrorScreen multiple times
-    if (AppRoutes.router.routeInformationProvider.value.uri.path != '/error') {
-      AppRoutes.router.go('/error', extra: ErrorViewParam(flutterError: flutterError));
+    if (AppRoutes.instance.router.routeInformationProvider.value.uri.path != '/error') {
+      AppRoutes.instance.router.go('/error', extra: ErrorViewParam(flutterError: flutterError));
     }
   }
 
@@ -58,8 +58,8 @@ class ErrorHandlerBuilderState extends State<ErrorHandlerBuilder> {
     if (!mounted) return false;
 
     // Prevent to push to ErrorScreen multiple times
-    if (AppRoutes.router.routeInformationProvider.value.uri.path != '/error') {
-      AppRoutes.router.go(
+    if (AppRoutes.instance.router.routeInformationProvider.value.uri.path != '/error') {
+      AppRoutes.instance.router.go(
         '/error',
         extra: ErrorViewParam(error: error, stackTrace: stackTrace),
       );

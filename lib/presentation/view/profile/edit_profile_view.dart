@@ -475,7 +475,7 @@ class _EditProfileViewState extends State<EditProfileView> {
         if (res.isFailure) {
           return AppDialog.showError(error: res.error.toString());
         } else {
-          AppRoutes.router.go('/home');
+          AppRoutes.instance.router.go('/home');
         }
       },
     );

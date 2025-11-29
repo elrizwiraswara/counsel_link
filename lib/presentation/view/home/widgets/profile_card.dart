@@ -112,7 +112,7 @@ class _SignOutButton extends StatelessWidget {
             return AppDialog.showError(error: res.error.toString());
           }
 
-          AppRoutes.router.refresh();
+          AppRoutes.instance.router.refresh();
         },
         child: Row(
           children: [

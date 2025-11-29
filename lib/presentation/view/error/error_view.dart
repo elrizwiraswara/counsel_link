@@ -32,7 +32,7 @@ class ErrorView extends StatelessWidget {
                   textColor: Theme.of(context).colorScheme.primary,
                   text: 'Back to home',
                   onTap: () {
-                    AppRoutes.router.go('/home');
+                    AppRoutes.instance.router.go('/home');
                   },
                 ),
               ],

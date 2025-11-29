@@ -122,7 +122,7 @@ class _SignUpViewState extends State<SignUpView> {
                   );
                 }
 
-                AppRoutes.router.go('/auth/otp-verify');
+                AppRoutes.instance.router.go('/auth/otp-verify');
               } else {
                 AppDialog.show(
                   title: res.title,

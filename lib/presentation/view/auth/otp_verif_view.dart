@@ -128,9 +128,9 @@ class _OtpVerifViewState extends State<OtpVerifView> {
               final isNewUser = res.data?.name == null;
 
               if (isNewUser) {
-                AppRoutes.router.go('/edit-profile', extra: true);
+                AppRoutes.instance.router.go('/edit-profile', extra: true);
               } else {
-                AppRoutes.router.go('/home');
+                AppRoutes.instance.router.go('/home');
               }
             },
           ),

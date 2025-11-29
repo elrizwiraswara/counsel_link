@@ -29,7 +29,7 @@ class AppDialog {
     Color rightButtonTextColor = AppColors.orangeLv1,
     double? elevation,
   }) async {
-    final context = AppRoutes.router.configuration.navigatorKey.currentContext;
+    final context = AppRoutes.instance.router.configuration.navigatorKey.currentContext;
     if (context == null) throw Exception('No context available for dialog');
 
     return await showDialog<T>(
@@ -59,7 +59,7 @@ class AppDialog {
   }
 
   static Future<T> showProgress<T>(Future<T> Function() process, {bool dismissible = false}) async {
-    final context = AppRoutes.router.configuration.navigatorKey.currentContext;
+    final context = AppRoutes.instance.router.configuration.navigatorKey.currentContext;
     if (context == null) throw Exception('No context available for dialog');
 
     showDialog(
@@ -109,8 +109,8 @@ class AppDialog {
   }
 
   static void _closeDialog() {
-    if (AppRoutes.router.configuration.navigatorKey.currentState?.canPop() ?? false) {
-      AppRoutes.router.configuration.navigatorKey.currentState?.pop();
+    if (AppRoutes.instance.router.configuration.navigatorKey.currentState?.canPop() ?? false) {
+      AppRoutes.instance.router.configuration.navigatorKey.currentState?.pop();
     }
   }
 
@@ -122,7 +122,7 @@ class AppDialog {
     String? buttonText,
     Function(BuildContext)? onTap,
   }) async {
-    final context = AppRoutes.router.configuration.navigatorKey.currentContext;
+    final context = AppRoutes.instance.router.configuration.navigatorKey.currentContext;
     if (context == null) throw Exception('No context available for dialog');
 
     return await showDialog<T>(

@@ -121,7 +121,7 @@ class _SignInViewState extends State<SignInView> {
                 );
               }
 
-              AppRoutes.router.go('/auth/otp-verify');
+              AppRoutes.instance.router.go('/auth/otp-verify');
             },
           ),
           const SizedBox(height: AppSizes.padding * 1.5),
